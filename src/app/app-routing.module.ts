@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SellerAuthComponent } from './seller-auth/seller-auth.component';
 import { SellerHomeComponent } from './seller-home/seller-home.component';
+import { SellerAuthGuard } from './seller-auth.guard';
 
 const routes: Routes = [
   {
@@ -16,7 +17,8 @@ const routes: Routes = [
   },
   {
     path:'seller-home',
-    component:SellerHomeComponent
+    component:SellerHomeComponent,
+    canActivate:[SellerAuthGuard]
   },
   {
     path:"**",

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SellerService } from '../services/seller.service';
 import {Router} from '@angular/router'
 import { SignUpData } from '../data-type';
@@ -8,21 +8,15 @@ import { SignUpData } from '../data-type';
   templateUrl: './seller-auth.component.html',
   styleUrl: './seller-auth.component.css'
 })
-export class SellerAuthComponent {
+export class SellerAuthComponent implements OnInit{
 
-  constructor(private _seller:SellerService, private _router:Router){
+  constructor(private _seller:SellerService, private _router:Router){ }
 
+  ngOnInit():void{
+    this._seller.reloadSeller();
   }
-
   signUp(data:SignUpData): void{
-    this._seller.userSignup(data).subscribe((result)=>{
-
-      if(result){
-        this._router.navigate(['seller-home']);
-      }
-
-      console.log("Data send", result)
-    })
+    this._seller.userSignup(data);
   }
 
 }
